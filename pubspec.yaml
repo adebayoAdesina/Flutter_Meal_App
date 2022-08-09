@@ -74,11 +74,16 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  #   - family: Libre Baskerville
+      fonts:
+        - asset: assets/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf
+          weight: 700
+          style: bold
+        - asset: assets/fonts/Libre_Baskerville/LibreBaskerville-Italic.ttf
+          weight: 400
+          style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
