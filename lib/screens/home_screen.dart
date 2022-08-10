@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/model/category_model.dart';
+import 'package:meal_app/widgets/category_card.dart';
+
+import '../data/category_data.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const id = '/';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meal'),
+        title: Text(
+          'Meal',
+          style: Theme.of(context).textTheme.headline1,
+        ),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(25.0),
@@ -21,16 +28,7 @@ class HomeScreen extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           Category category = categories[index];
-          return Container(
-            padding: const EdgeInsets.all(15.0),
-            child: Text(category.title.toString()),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  category.color!.withOpacity(0.4),
-                  category.color!,
-                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                borderRadius: BorderRadius.circular(15.0)),
-          );
+          return CategoryCard(category: category);
         },
       ),
     );
