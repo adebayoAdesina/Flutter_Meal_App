@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Meal App',
       theme: ThemeData(
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
@@ -47,17 +47,15 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: TabScreen.id,
       routes: {
-        TabScreen.id: ((context) => TabScreen()),
-        HomeScreen.id: (context) => const HomeScreen(),
+        TabScreen.id: ((context) => const TabScreen()),
         CategoryScreen.id: (context) => const CategoryScreen(),
         MealDetailScreen.id: (context) => const MealDetailScreen()
       },
       onUnknownRoute: (setting) {
         return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
+          builder: (_) => const TabScreen(),
         );
       },
-      
     );
   }
 }

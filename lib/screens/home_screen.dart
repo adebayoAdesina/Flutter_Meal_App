@@ -5,18 +5,11 @@ import 'package:meal_app/widgets/category_card.dart';
 import '../data/category_data.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const id = '/';
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Meal',
-          style: Theme.of(context).textTheme.headline1,
-        ),
-      ),
       body: GridView.builder(
         padding: const EdgeInsets.all(25.0),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
