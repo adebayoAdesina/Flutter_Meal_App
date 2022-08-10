@@ -40,6 +40,7 @@ class MealDetailScreen extends StatelessWidget {
             ),
             sectionTitle(context, 'Ingredients'),
             ListView.builder(
+              primary: false,
               shrinkWrap: true,
               itemCount: routeArgs.ingredients!.length,
               itemBuilder: (context, index) {
@@ -52,6 +53,7 @@ class MealDetailScreen extends StatelessWidget {
             ),
             sectionTitle(context, 'Steps'),
             ListView.builder(
+              primary: false,
               shrinkWrap: true,
               itemCount: routeArgs.steps!.length,
               itemBuilder: (context, index) {
@@ -62,14 +64,24 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pop(context, routeArgs.id);
+        },
+        child: const Icon(
+          Icons.delete,
+        ),
+      ),
     );
   }
 
   Text sectionTitle(BuildContext context, String text) {
     return Text(
       text,
-      style:
-          Theme.of(context).textTheme.headline1!.copyWith(color: kPrimaryColor),
+      style: Theme.of(context).textTheme.headline1!.copyWith(
+            color: kPrimaryColor,
+          ),
     );
   }
 }

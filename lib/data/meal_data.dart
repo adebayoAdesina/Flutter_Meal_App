@@ -34,7 +34,7 @@ List<Meal> meals = [
     isLactoseFree: true,
   ),
   Meal(
-    id: 'ml',
+    id: 'sl',
     category: [
       'c1',
       'c2',

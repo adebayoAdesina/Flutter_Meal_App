@@ -6,17 +6,22 @@ import 'package:meal_app/widgets/meal_card.dart';
 
 import '../data/meal_data.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   static const id = '/category';
-
+  final List<Meal> currectMeal;
   const CategoryScreen({
-    Key? key,
+    Key? key, required this.currectMeal,
   }) : super(key: key);
 
   @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
+  @override
   Widget build(BuildContext context) {
     final routeArgs = ModalRoute.of(context)!.settings.arguments as Category;
-    final categoryMeal = meals.where((meal) {
+    final categoryMeal = widget.currectMeal.where((meal) {
       return meal.category!.contains(routeArgs.id);
     }).toList();
     

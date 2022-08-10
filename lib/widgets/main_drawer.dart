@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meal_app/screens/tab_screen.dart';
 import 'package:meal_app/utils/color.dart';
 
+import '../screens/settings_screen.dart';
+
 class MainDrawer extends StatefulWidget {
   const MainDrawer({
     Key? key,
@@ -17,14 +19,14 @@ class _MainDrawerState extends State<MainDrawer> {
       'icon': Icons.restaurant,
       'title': 'Meals',
       'onTap': (context) {
-        Navigator.pop(context, TabScreen.id);
+        Navigator.pushReplacementNamed(context, TabScreen.id,);
       },
     },
     {
       'icon': Icons.settings,
       'title': 'Setting',
       'onTap': (context) {
-        Navigator.pushNamed(context, TabScreen.id);
+        Navigator.pushReplacementNamed(context, SettingsScreen.id,);
       },
     }
   ];
