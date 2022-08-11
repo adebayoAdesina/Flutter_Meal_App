@@ -72,11 +72,9 @@ class MealDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           addFavorities(routeArgs);
-          Navigator.pop(context, routeArgs.id);
+          // Navigator.pop(context, routeArgs.id);
         },
-        child: Icon(
-          isFavoriteMeal(routeArgs) ? Icons.star : Icons.star_border
-        ),
+        child: Icon(isFavoriteMeal(routeArgs) ? Icons.star : Icons.star_border),
       ),
     );
   }

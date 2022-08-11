@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/data/meal_data.dart';
 import 'package:meal_app/screens/category_screen.dart';
-import 'package:meal_app/screens/home_screen.dart';
 import 'package:meal_app/screens/meal_detail_screen.dart';
 import 'package:meal_app/screens/settings_screen.dart';
 import 'package:meal_app/screens/tab_screen.dart';
@@ -56,16 +55,16 @@ class _MyAppState extends State<MyApp> {
   List<Meal> favorites = [];
 
   void addFavorities(Meal meal) {
+    final check = favorites.indexWhere((element) => element == meal);
+    
     favorites.isNotEmpty
-        ? favorites.forEach((element) {
-            element != meal
-                ? setState(() {
-                    favorites.add(meal);
-                  })
-                : setState(() {
-                    favorites.removeWhere((elements) => elements.id == meal.id);
-                  });
-          })
+        ? check == -1
+            ? setState(() {
+                favorites.add(meal);
+              })
+            : setState(() {
+                favorites.removeWhere((elements) => elements.id == meal.id);
+              })
         : setState(() {
             favorites.add(meal);
           });

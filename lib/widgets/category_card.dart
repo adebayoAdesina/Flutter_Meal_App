@@ -11,12 +11,22 @@ class CategoryCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       splashColor: Theme.of(context).colorScheme.primary,
-      onTap: (() => Navigator.pushNamed(
-            context,
-            CategoryScreen.id, arguments: category )),
+      onTap: (() =>
+          Navigator.pushNamed(context, CategoryScreen.id, arguments: category)),
       child: Container(
         padding: const EdgeInsets.all(15.0),
-        child: Text(category.title.toString()),
+        child: Column(
+          children: [
+            Text(category.title.toString()),
+            const SizedBox(
+              height: 10,
+            ),
+            const Image(
+              image: AssetImage('assets/image/R.png'),
+              height: 70,
+            )
+          ],
+        ),
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
               category.color!.withOpacity(0.4),

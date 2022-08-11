@@ -4,7 +4,6 @@ import 'package:meal_app/model/category_model.dart';
 import 'package:meal_app/model/meal.dart';
 import 'package:meal_app/widgets/meal_card.dart';
 
-import '../data/meal_data.dart';
 
 class CategoryScreen extends StatefulWidget {
   static const id = '/category';
@@ -31,12 +30,26 @@ class _CategoryScreenState extends State<CategoryScreen> {
           routeArgs.title.toString(),
         ),
       ),
-      body: ListView.builder(
-          itemCount: categoryMeal.length,
-          itemBuilder: (context, index) {
-            Meal meal = categoryMeal[index];
-            return MealCard(meal: meal);
-          }),
+      body: ListOfMeal(categoryMeal: categoryMeal),
     );
+  }
+}
+
+class ListOfMeal extends StatelessWidget {
+  const ListOfMeal({
+    Key? key,
+    required this.categoryMeal,
+  }) : super(key: key);
+
+  final List<Meal> categoryMeal;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: categoryMeal.length,
+        itemBuilder: (context, index) {
+          Meal meal = categoryMeal[index];
+          return MealCard(meal: meal);
+        });
   }
 }
