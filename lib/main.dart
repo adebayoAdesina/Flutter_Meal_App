@@ -20,7 +20,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   Map<String, bool> _filters = {
     'isGlutenFree': false,
     'isVegan': false,
@@ -34,22 +33,48 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _filters = filters;
       currectMeal = meals.where((element) {
-        if (_filters['isGlutenFree'] == false  && element.isGlutenFree == false) {
+        if (_filters['isGlutenFree'] == false &&
+            element.isGlutenFree == false) {
           return false;
         }
-        if (_filters['isVegan'] == false  && element.isVegan == false) {
+        if (_filters['isVegan'] == false && element.isVegan == false) {
           return false;
         }
-        if (_filters['isVegetarian'] == false  && element.isVegetarian == false) {
+        if (_filters['isVegetarian'] == false &&
+            element.isVegetarian == false) {
           return false;
         }
-        if (_filters['isLactoseFree'] == false  && element.isLactoseFree == false) {
+        if (_filters['isLactoseFree'] == false &&
+            element.isLactoseFree == false) {
           return false;
         }
         return true;
       }).toList();
     });
   }
+
+  List<Meal> favorites = [];
+
+  void addFavorities(Meal meal) {
+    favorites.isNotEmpty
+        ? favorites.forEach((element) {
+            element != meal
+                ? setState(() {
+                    favorites.add(meal);
+                  })
+                : setState(() {
+                    favorites.removeWhere((elements) => elements.id == meal.id);
+                  });
+          })
+        : setState(() {
+            favorites.add(meal);
+          });
+  }
+
+  bool isFavoriteMeal(Meal meal) {
+    return favorites.any((element) => element == meal);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -84,14 +109,25 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: TabScreen.id,
       routes: {
-        TabScreen.id: ((context) => const TabScreen()),
-        CategoryScreen.id: (context) => CategoryScreen(currectMeal: currectMeal),
-        MealDetailScreen.id: (context) => const MealDetailScreen(),
-        SettingsScreen.id:(context) => SettingsScreen(setFilter: _setFilter, currentFilter: _filters,)
+        TabScreen.id: ((context) => TabScreen(
+              favorite: favorites,
+            )),
+        CategoryScreen.id: (context) =>
+            CategoryScreen(currectMeal: currectMeal),
+        MealDetailScreen.id: (context) => MealDetailScreen(
+              addFavorities: addFavorities,
+              isFavoriteMeal: isFavoriteMeal,
+            ),
+        SettingsScreen.id: (context) => SettingsScreen(
+              setFilter: _setFilter,
+              currentFilter: _filters,
+            )
       },
       onUnknownRoute: (setting) {
         return MaterialPageRoute(
-          builder: (_) => const TabScreen(),
+          builder: (_) => TabScreen(
+            favorite: favorites,
+          ),
         );
       },
     );

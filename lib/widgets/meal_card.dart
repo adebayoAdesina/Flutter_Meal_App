@@ -13,12 +13,14 @@ class MealCard extends StatelessWidget {
       context,
       MealDetailScreen.id,
       arguments: meal,
-    ).then(
-      (value) => value!= null ? meals.removeWhere(
-        (element) => element.id == value,
-      ): null,
-    );
-    
+    )
+
+        // .then(
+        //   (value) => value!= null ? meals.removeWhere(
+        //     (element) => element.id == value,
+        //   ): null,
+        // );
+        ;
   }
 
   @override

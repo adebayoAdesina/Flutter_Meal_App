@@ -6,7 +6,11 @@ import '../widgets/content_build.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const id = '/meal';
-  const MealDetailScreen({Key? key}) : super(key: key);
+  final Function addFavorities;
+  final bool Function(Meal) isFavoriteMeal;
+  const MealDetailScreen(
+      {Key? key, required this.addFavorities, required this.isFavoriteMeal})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +71,11 @@ class MealDetailScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          addFavorities(routeArgs);
           Navigator.pop(context, routeArgs.id);
         },
-        child: const Icon(
-          Icons.delete,
+        child: Icon(
+          isFavoriteMeal(routeArgs) ? Icons.star : Icons.star_border
         ),
       ),
     );
