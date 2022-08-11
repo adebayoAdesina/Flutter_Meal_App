@@ -1,6 +1,6 @@
 # meal_app
 
-A new Flutter project.
+A Meal Application using only state lifting in flutter.
 
 ## Getting Started
 
